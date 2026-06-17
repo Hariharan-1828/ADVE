@@ -54,6 +54,9 @@ Evaluated on a 15-second, 450-frame synthetic video (30 FPS) with 4 objects incl
 | Min Cosine Similarity | — | 0.8480 | — |
 | Frames Above Threshold | — | **99.77%** | — |
 | CLIP Calls (450 frames) | Minimize | **15** | — |
+| GPU Throughput (with validation) | — | **32.2 FPS** | — |
+| GPU Throughput (no-validation) | — | **53.5 FPS** (RTX 4050) | — |
+| CPU Throughput | — | **5.8 FPS** | — |
 
 ![ADVE Validation Results](outputs/adve_results.png)
 

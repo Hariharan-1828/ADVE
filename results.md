@@ -29,6 +29,8 @@ The validation pipeline compares the reconstructed/approximated frame embeddings
 | **Minimum Cosine Similarity ($\Delta$ Frames)** | - | 0.8480 | - |
 | **Frames Exceeding Success Threshold** | - | **99.77%** | - |
 | **Effective CPU Throughput** | - | 5.8 FPS | - |
+| **Effective GPU Throughput (with validation)** | - | **32.2 FPS** | - |
+| **Effective GPU Throughput (no-validation)** | - | **53.5 FPS** (NVIDIA RTX 4050) | - |
 
 ---
 

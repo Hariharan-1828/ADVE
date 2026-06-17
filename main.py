@@ -17,6 +17,8 @@ def parse_args():
                    help="Force anchor refresh every N frames (default: 30)")
     p.add_argument("--output-dir",          type=str,   default="outputs",
                    help="Where to save results (default: ./outputs)")
+    p.add_argument("--no-validation",       action="store_true",
+                   help="Skip ground-truth CLIP encoding on delta frames to measure true inference speed")
     return p.parse_args()
 
 
@@ -31,7 +33,7 @@ def main():
     )
 
     pipeline = ADVEPipeline(config)
-    pipeline.process_video(args.video)
+    pipeline.process_video(args.video, no_validation=args.no_validation)
 
 
 if __name__ == "__main__":

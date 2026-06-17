@@ -18,8 +18,9 @@ class DeltaTracker:
     This is the core cost-saving path.
     """
 
-    def __init__(self, yolo: YOLO):
-        self.yolo = yolo  # Same shared YOLO instance as AnchorProcessor
+    def __init__(self, yolo: YOLO, device: str = 'cpu'):
+        self.yolo   = yolo  # Same shared YOLO instance as AnchorProcessor
+        self.device = device
 
     def track(
         self,
@@ -39,7 +40,7 @@ class DeltaTracker:
         current_graph : SpatialGraph with reused embeddings for tracked objects
         delta         : output of anchor_graph.compute_delta(current_graph)
         """
-        results = self.yolo.track(frame, persist=True, verbose=False)[0]
+        results = self.yolo.track(frame, persist=True, verbose=False, device=self.device)[0]
         current = SpatialGraph()
 
         if results.boxes is not None and len(results.boxes):

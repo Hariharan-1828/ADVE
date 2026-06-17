@@ -4,7 +4,7 @@ import os
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 from config import Config
 
@@ -27,15 +27,18 @@ class Validator:
         self,
         frame_idx:       int,
         reconstructed:   np.ndarray,
-        ground_truth:    np.ndarray,
+        ground_truth:    Optional[np.ndarray],
         is_anchor:       bool,
         delta_magnitude: float,
         encoder_called:  bool,
     ) -> float:
-        sim = float(
-            np.dot(reconstructed, ground_truth) /
-            (np.linalg.norm(reconstructed) * np.linalg.norm(ground_truth) + 1e-8)
-        )
+        if ground_truth is None:
+            sim = 1.0
+        else:
+            sim = float(
+                np.dot(reconstructed, ground_truth) /
+                (np.linalg.norm(reconstructed) * np.linalg.norm(ground_truth) + 1e-8)
+            )
 
         self.records.append({
             "frame":           frame_idx,

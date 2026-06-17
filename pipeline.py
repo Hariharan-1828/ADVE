@@ -32,7 +32,7 @@ class ADVEPipeline:
         self.yolo = YOLO(config.YOLO_MODEL)
 
         self.anchor_proc     = AnchorProcessor(config, self.yolo)
-        self.delta_tracker   = DeltaTracker(self.yolo)
+        self.delta_tracker   = DeltaTracker(self.yolo, device=config.DEVICE)
         self.reconstructor   = EmbeddingReconstructor()
         self.validator       = Validator(config)
 
@@ -90,7 +90,7 @@ class ADVEPipeline:
     # Main entry point
     # ------------------------------------------------------------------
 
-    def process_video(self, video_path: str) -> dict:
+    def process_video(self, video_path: str, no_validation: bool = False) -> dict:
         cap = cv2.VideoCapture(video_path)
         if not cap.isOpened():
             raise FileNotFoundError(f"Cannot open video: {video_path}")
@@ -156,7 +156,7 @@ class ADVEPipeline:
                 )
 
                 # Ground truth: full CLIP (only for validation — normally skipped)
-                ground_truth = self.anchor_proc.embed_frame(frame)
+                ground_truth = None if no_validation else self.anchor_proc.embed_frame(frame)
                 self.frames_since_anchor += 1
 
                 # Check if current frame was empty, schedule refresh if anchor was not empty

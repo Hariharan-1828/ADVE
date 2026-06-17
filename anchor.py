@@ -44,7 +44,7 @@ class AnchorProcessor:
         """
         frame_embedding = self._embed(frame)
 
-        results = self.yolo.track(frame, persist=True, verbose=False)[0]
+        results = self.yolo.track(frame, persist=True, verbose=False, device=self.device)[0]
         graph   = SpatialGraph()
 
         if results.boxes is not None and len(results.boxes):
