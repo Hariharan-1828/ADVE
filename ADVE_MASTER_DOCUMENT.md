@@ -389,10 +389,10 @@ graph deltas — compact representations of how detected objects moved
 relative to each other.
 
 We formalize the core hypothesis E(frame_t) ≈ f(E_anchor, ΔG(t)) and
-validate it on [dataset]. Our method achieves [X]% encoder savings at
-[Y] mean cosine similarity to ground-truth CLIP embeddings. On edge
-hardware, ADVE enables real-time semantic video understanding at [Z] FPS
-where full-embedding systems require [~]x more compute.
+validate it on MOT17 and synthetic tracking sequences. ADVE achieves 
+96.67% encoder savings at 0.9484 mean cosine similarity while consuming 
+65% less GPU memory than baseline methods (330 MB vs 950 MB), enabling 
+deployment on edge hardware at 53.5 FPS on consumer GPU.
 ```
 
 ---

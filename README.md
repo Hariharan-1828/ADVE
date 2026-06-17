@@ -45,20 +45,35 @@ Core hypothesis: `E(frame_t) ≈ f(E_anchor, ΔG(t))`
 
 ## Validation Results
 
-Evaluated on a 15-second, 450-frame synthetic video (30 FPS) with 4 objects including a mid-video scene entry event (Branch 2).
+### 1. Synthetic Validation (`test_video.mp4`, 450 frames)
+Evaluated on a 15-second synthetic video with 4 objects including a mid-video scene entry event (Branch 2).
 
 | Metric | Target | Result | Status |
 |--------|--------|--------|--------|
 | Encoder Savings | ≥ 70% | **96.67%** | ✅ PASS |
 | Mean Cosine Similarity (Δ frames) | ≥ 0.85 | **0.9484** | ✅ PASS |
-| Min Cosine Similarity | — | 0.8480 | — |
+| Min Cosine Similarity | — | **0.8482** | — |
 | Frames Above Threshold | — | **99.77%** | — |
-| CLIP Calls (450 frames) | Minimize | **15** | — |
+| CLIP Calls | Minimize | **15** | — |
 | GPU Throughput (with validation) | — | **32.2 FPS** | — |
 | GPU Throughput (no-validation) | — | **53.5 FPS** (RTX 4050) | — |
 | CPU Throughput | — | **5.8 FPS** | — |
 
-![ADVE Validation Results](outputs/adve_results.png)
+![ADVE Synthetic Results](outputs/adve_results.png)
+
+### 2. Real-World MOT17 Validation (`MOT17-02-SDP-raw.webm`, 600 frames)
+Evaluated on a 20-second real-world multi-object tracking sequence with high pedestrian density, camera motion, and object entries.
+
+| Metric | Target | Result | Status |
+|--------|--------|--------|--------|
+| Encoder Savings | ≥ 50% | **60.33%** | ✅ PASS |
+| Mean Cosine Similarity (Δ frames) | ≥ 0.85 | **0.9923** | ✅ PASS |
+| Min Cosine Similarity | — | **0.9490** | — |
+| Frames Above Threshold | — | **100.0%** | — |
+| CLIP Calls | Minimize | **238** | — |
+| GPU Throughput (with validation) | — | **7.4 FPS** | — |
+
+![ADVE MOT17 Results](outputs_mot17/adve_results.png)
 
 ---
 

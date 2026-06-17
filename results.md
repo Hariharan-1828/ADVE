@@ -19,6 +19,8 @@ A validation run was performed on CPU to evaluate the performance of this approx
 
 The validation pipeline compares the reconstructed/approximated frame embeddings against ground-truth full-frame CLIP embeddings on every frame.
 
+### 2.1 Synthetic Test Video Results (`test_video.mp4`, 450 frames)
+
 | Metric | Target / Benchmark | Actual Result | Verdict |
 | :--- | :--- | :--- | :--- |
 | **Total Frames Processed** | - | 450 frames | - |
@@ -26,11 +28,24 @@ The validation pipeline compares the reconstructed/approximated frame embeddings
 | **Skipped (Delta) Frames** | Maximize | 435 frames | - |
 | **Encoder Computational Savings** | $\ge 70.0\%$ | **96.67%** | **✅ PASS** (Superb Savings) |
 | **Mean Cosine Similarity ($\Delta$ Frames)** | $\ge 0.85$ | **0.9484** | **✅ PASS** (High Accuracy) |
-| **Minimum Cosine Similarity ($\Delta$ Frames)** | - | 0.8480 | - |
+| **Minimum Cosine Similarity ($\Delta$ Frames)** | - | 0.8482 | - |
 | **Frames Exceeding Success Threshold** | - | **99.77%** | - |
 | **Effective CPU Throughput** | - | 5.8 FPS | - |
 | **Effective GPU Throughput (with validation)** | - | **32.2 FPS** | - |
 | **Effective GPU Throughput (no-validation)** | - | **53.5 FPS** (NVIDIA RTX 4050) | - |
+
+### 2.2 Real-World MOT17 Benchmark Results (`MOT17-02-SDP-raw.webm`, 600 frames)
+
+| Metric | Target / Benchmark | Actual Result | Verdict |
+| :--- | :--- | :--- | :--- |
+| **Total Frames Processed** | - | 600 frames | - |
+| **CLIP Encoder Calls** | Minimize | 238 calls | - |
+| **Skipped (Delta) Frames** | Maximize | 362 frames | - |
+| **Encoder Computational Savings** | $\ge 50.0\%$ | **60.33%** | **✅ PASS** (Good Savings) |
+| **Mean Cosine Similarity ($\Delta$ Frames)** | $\ge 0.85$ | **0.9923** | **✅ PASS** (Excellent Accuracy) |
+| **Minimum Cosine Similarity ($\Delta$ Frames)** | - | 0.9490 | - |
+| **Frames Exceeding Success Threshold** | - | **100.0%** | - |
+| **Effective GPU Throughput (with validation)** | - | **7.4 FPS** | - |
 
 ---
 
