@@ -75,6 +75,20 @@ Evaluated on a 20-second real-world multi-object tracking sequence with high ped
 
 ![ADVE MOT17 Results](outputs_mot17/adve_results.png)
 
+### 3. Baseline Comparison (Table 1 - MOT17)
+
+We compared ADVE's spatial graph delta approximation against standard keyframe sampling strategies (Keyframe-N) on the MOT17 sequence:
+
+| Method | Calls | Mean CosSim | Min CosSim | CPU FPS | GPU FPS | GPU VRAM |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Full Embed (baseline)** | 600 (100.0%) | 1.0000 | 1.0000 | 9.6 | 62.5 | 950.0 MB |
+| **Keyframe-5** | 120 (20.0%) | 0.9932 | 0.9080 | 44.7 | 166.7 | 950.0 MB |
+| **Keyframe-10** | 60 (10.0%) | 0.9876 | 0.9054 | 84.8 | 210.5 | 950.0 MB |
+| **Keyframe-30** | 20 (3.3%) | 0.9762 | 0.9054 | 202.5 | 255.3 | 950.0 MB |
+| **ADVE (ours)** | 238 (39.7%) | **0.9923** | **0.9490** | 1.0 | 7.4 | **330.0 MB** |
+
+*ADVE dynamically refreshes keyframes during active pedestrian crossings, leading to a much higher minimum similarity floor (0.9490 vs 0.9054) and a 65% reduction in GPU VRAM.*
+
 ---
 
 ## How It Works

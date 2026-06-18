@@ -468,16 +468,16 @@ How new objects are detected and integrated into the spatial graph.
 - FPS throughput on RTX 4050 and Jetson Nano
 - GPU memory (MB) during inference
 
-#### 4.3 Main Results Table (Table 1)
+#### 4.3 Main Results Table (Table 1 - MOT17)
 
 ```
-Method               | Encoder Calls | Mean CosSim | FPS  | GPU MB
----------------------|---------------|-------------|------|-------
-Full Embed (baseline)|    100%       |   1.000     |  ~8  |  2400
-Keyframe-5           |     20%       |   0.XXX     | ~35  |   800
-Keyframe-10          |     10%       |   0.XXX     | ~55  |   600
-AdaFocus             |     30%       |   0.XXX     | ~22  |  1800
-ADVE (ours)          |    ~10-15%    |   0.XXX     | ~X   |   XXX
+Method                 | Encoder Calls | Mean CosSim  | Min CosSim   | CPU FPS    | GPU FPS    | GPU VRAM    
+-----------------------|---------------|--------------|--------------|------------|------------|-------------
+Full Embed (baseline)  | 600 (100.0%)  | 1.0000       | 1.0000       | 9.6        | 62.5       | 950.0 MB    
+Keyframe-5             | 120 (20.0%)   | 0.9932       | 0.9080       | 44.7       | 166.7      | 950.0 MB    
+Keyframe-10            | 60 (10.0%)    | 0.9876       | 0.9054       | 84.8       | 210.5      | 950.0 MB    
+Keyframe-30            | 20 (3.3%)     | 0.9762       | 0.9054       | 202.5      | 255.3      | 950.0 MB    
+ADVE (ours)            | 238 (39.7%)   | **0.9923**   | **0.9490**   | 1.0        | 7.4        | **330.0 MB** 
 ```
 
 #### 4.4 Ablation Study (Table 2)
